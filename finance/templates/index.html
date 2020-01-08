@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+
+{% block main %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Share Symbol</th>
+                <th>Number</th>
+                <th>Current Price</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+
+                {% for data in history %}
+                <tr>
+                    <td>{{data["symbol"]}}</td>
+                    <td>{{data["n"]}}</td>
+                    <td>{{table[data.symbol]["price"]}}</td>
+                    <td>{{ (table[data["symbol"]]["price"]) * data["n"]}}</td>
+
+                </tr>
+                {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3"></td>
+                <td><b>TOTAL VALUE: {{total | usd}}</b></td>
+            </tr>
+        </tfoot>
+    </table>
+
+{% endblock %}
